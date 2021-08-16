@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import axios from "axios";
-import {NavLink, Route, Switch} from "react-router-dom";
-import {ProfileUser} from "./ProfileUser";
-import {AppBar, Button, IconButton, makeStyles, Toolbar, Typography} from "@material-ui/core";
+import axios from 'axios';
+import {NavLink, Route, Switch} from 'react-router-dom';
+import {ProfileUser} from './Profile/ProfileUser';
+import {AppBar, Button, IconButton, makeStyles, Toolbar, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import Users from "./Users";
-import s from "./Main.module.css";
+import UsersPage from './Users/UsersPage';
+import s from './Main.module.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,20 +37,14 @@ function App() {
         <div className={s.main}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        News
+                        <NavLink className={s.link} to="/users">MEET THE HEROES!</NavLink>
                     </Typography>
-                    <NavLink to="/users">Users</NavLink>
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
-
             <Switch>
                 <Route path='/profile/:userName?' render={() => <ProfileUser persons={appState}/>}/>
-                <Route path='/users' component={Users}/>
+                <Route path='/users' component={UsersPage}/>
             </Switch>
         </div>
     )
